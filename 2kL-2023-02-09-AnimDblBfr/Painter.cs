@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2kL_2023_02_09_AnimDblBfr
+﻿namespace _2kL_2023_02_09_AnimDblBfr
 {
     public class Painter
     {
@@ -13,7 +7,8 @@ namespace _2kL_2023_02_09_AnimDblBfr
         private Thread t;
         private Graphics mainGraphics;
         private BufferedGraphics bg;
-
+        private bool isAlive;
+        public Thread PainterThread => t;
         public Graphics MainGraphics
         {
             get => mainGraphics;
@@ -50,18 +45,33 @@ namespace _2kL_2023_02_09_AnimDblBfr
 
         public void Start()
         {
+            isAlive = true;
             t = new Thread(() =>
             {
-                bg.Graphics.Clear(Color.White);
-                foreach (var animator in animators)
+                while (isAlive)
                 {
-                    animator.PaintCircle(bg.Graphics);
+                    bg.Graphics.Clear(Color.White);
+                    foreach (var animator in animators)
+                    {
+                        animator.PaintCircle(bg.Graphics);
+                    }
+                    bg.Render(MainGraphics);
+                    try
+                    {
+                        if (isAlive) Thread.Sleep(30);
+                    }
+                    catch
+                    { }
                 }
-                bg.Render(MainGraphics);
-                Thread.Sleep(30);
             });
             t.IsBackground = true;
             t.Start();
+        }
+
+        public void Stop()
+        {
+            isAlive = false;
+            t.Interrupt();
         }
     }
 }
