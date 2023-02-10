@@ -9,7 +9,8 @@ namespace _2kL_2023_02_09_AnimDblBfr
     public class Animator
     {
         private Circle c;
-        private Thread t;
+        private Thread? t = null;
+        public bool IsAlive => t == null || t.IsAlive;
         public Size ContainerSize { get; set; }
 
         public Animator(Size containerSize)

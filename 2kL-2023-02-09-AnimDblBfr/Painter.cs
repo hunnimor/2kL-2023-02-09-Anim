@@ -63,6 +63,7 @@
                 {
                     while (isAlive)
                     {
+                        animators.RemoveAll(it => !it.IsAlive);
                         lock (locker)
                         {
                             if (PaintOnBuffer())
