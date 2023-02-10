@@ -43,9 +43,11 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(558, 405);
             this.mainPanel.TabIndex = 0;
+            this.mainPanel.Resize += new System.EventHandler(this.mainPanel_Resize);
             // 
             // btnStart
             // 
+            this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnStart.Location = new System.Drawing.Point(254, 430);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
@@ -56,6 +58,7 @@
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Location = new System.Drawing.Point(495, 430);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -72,6 +75,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.mainPanel);
+            this.MinimumSize = new System.Drawing.Size(400, 350);
             this.Name = "Form1";
             this.Text = "Анимация";
             this.ResumeLayout(false);

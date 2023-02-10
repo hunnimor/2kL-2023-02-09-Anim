@@ -2,23 +2,30 @@
 {
     public class Painter
     {
+        private object locker = new();
         private List<Animator> animators = new();
         private Size containerSize;
         private Thread t;
         private Graphics mainGraphics;
         private BufferedGraphics bg;
         private bool isAlive;
+        
+        private volatile int objectsPainted = 0;
         public Thread PainterThread => t;
         public Graphics MainGraphics
         {
             get => mainGraphics;
             set
             {
-                mainGraphics = value;
-                ContainerSize = mainGraphics.VisibleClipBounds.Size.ToSize();
-                bg = BufferedGraphicsManager.Current.Allocate(
-                    mainGraphics, new Rectangle(new Point(0, 0), ContainerSize)
-                );
+                lock (locker)
+                {
+                    mainGraphics = value;
+                    ContainerSize = mainGraphics.VisibleClipBounds.Size.ToSize();
+                    bg = BufferedGraphicsManager.Current.Allocate(
+                        mainGraphics, new Rectangle(new Point(0, 0), ContainerSize)
+                    );
+                    objectsPainted = 0;
+                }
             }
         }
 
@@ -28,6 +35,10 @@
             set
             {
                 containerSize = value;
+                foreach (var animator in animators)
+                {
+                    animator.ContainerSize = ContainerSize;
+                }
             }
         }
 
@@ -48,21 +59,20 @@
             isAlive = true;
             t = new Thread(() =>
             {
-                while (isAlive)
+                try
                 {
-                    bg.Graphics.Clear(Color.White);
-                    foreach (var animator in animators)
+                    while (isAlive)
                     {
-                        animator.PaintCircle(bg.Graphics);
-                    }
-                    bg.Render(MainGraphics);
-                    try
-                    {
+                        lock (locker)
+                        {
+                            if (PaintOnBuffer())
+                            {
+                                bg.Render(MainGraphics);
+                            }
+                        }
                         if (isAlive) Thread.Sleep(30);
                     }
-                    catch
-                    { }
-                }
+                } catch (ArgumentException e){}
             });
             t.IsBackground = true;
             t.Start();
@@ -72,6 +82,20 @@
         {
             isAlive = false;
             t.Interrupt();
+        }
+
+        private bool PaintOnBuffer()
+        {
+            objectsPainted = 0;
+            var objectsCount = animators.Count;
+            bg.Graphics.Clear(Color.White);
+            foreach (var animator in animators)
+            {
+                animator.PaintCircle(bg.Graphics);
+                objectsPainted++;
+            }
+
+            return objectsPainted == objectsCount;
         }
     }
 }
