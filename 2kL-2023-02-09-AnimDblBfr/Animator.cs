@@ -17,7 +17,7 @@ namespace _2kL_2023_02_09_AnimDblBfr
         {
             Random rnd = new Random();
             ContainerSize = containerSize;
-            c = new Circle(50, ContainerSize.Height / 2 - 25, rnd.Next(0,10));
+            c = new Circle(50, rnd.Next(0,10), ContainerSize.Height / 2 - 50 + rnd.Next(75));
         }
 
         public void Start()
