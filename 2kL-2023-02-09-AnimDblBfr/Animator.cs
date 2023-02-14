@@ -15,8 +15,8 @@ namespace _2kL_2023_02_09_AnimDblBfr
 
         public Animator(Size containerSize)
         {
-            c = new Circle(50, 0, 0);
             ContainerSize = containerSize;
+            c = new Circle(50, ContainerSize.Height / 2 - 25, 0);
         }
 
         public void Start()
