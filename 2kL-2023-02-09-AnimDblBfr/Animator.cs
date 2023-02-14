@@ -15,7 +15,8 @@ namespace _2kL_2023_02_09_AnimDblBfr
 
         public Animator(Size containerSize)
         {
-            c = new Circle(50, 0, 0);
+            Random rnd = new Random();
+            c = new Circle(50, rnd.Next(0,10), 0);
             ContainerSize = containerSize;
         }
 
