@@ -9,16 +9,22 @@ namespace _2kL_2023_02_09_AnimDblBfr
     public class Circle
     {
         private Random r = new();
-        private int diam;
-        private int x, y;
+        private double diam;
+        private double x, y;
 
-        public int X => x;
-        public int Y => y;
-        public int Diam => diam;
+        public double X
+        {
+            get => x; set => x = value;
+        }
+        public double Y
+        {
+            get => y; set => y = value;
+        }
+        public double Diam => diam;
         public Color Color { get; set; }
-        public int dx, dy;
+        public double dx, dy;
 
-        public Circle(int diam, int x, int y, Color color)
+        public Circle(double diam, int x, int y, Color color)
         {
             this.diam = diam;
             this.x = x;
@@ -26,7 +32,7 @@ namespace _2kL_2023_02_09_AnimDblBfr
             this.Color = color;
         }
 
-        public Circle(int diam, int x, int y)
+        public Circle(double diam, int x, int y)
         {
             this.diam = diam;
             this.x = x;
@@ -45,7 +51,7 @@ namespace _2kL_2023_02_09_AnimDblBfr
         public void Paint(Graphics g)
         {
             var brush = new SolidBrush(Color);
-            g.FillEllipse(brush, x, y, Diam, Diam);
+            g.FillEllipse(brush, (int)x, (int)y, (int)Diam, (int)Diam);
         }
         private int RandomDir()
         {
