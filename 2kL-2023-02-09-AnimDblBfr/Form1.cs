@@ -17,7 +17,7 @@ namespace _2kL_2023_02_09_AnimDblBfr
 
         private void mainPanel_Resize(object sender, EventArgs e)
         {
-            
+
             p.MainGraphics = mainPanel.CreateGraphics();
         }
     }

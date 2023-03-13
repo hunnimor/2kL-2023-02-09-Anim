@@ -16,6 +16,7 @@ namespace _2kL_2023_02_09_AnimDblBfr
         public int Y => y;
         public int Diam => diam;
         public Color Color { get; set; }
+        public int dx, dy;
 
         public Circle(int diam, int x, int y, Color color)
         {
@@ -30,10 +31,12 @@ namespace _2kL_2023_02_09_AnimDblBfr
             this.diam = diam;
             this.x = x;
             this.y = y;
+            this.dx = RandomDir();
+            this.dy = RandomDir();
             this.Color = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255));
         }
 
-        public void Move(int dx, int dy)
+        public void Move()
         {
             x += dx;
             y += dy;
@@ -42,7 +45,16 @@ namespace _2kL_2023_02_09_AnimDblBfr
         public void Paint(Graphics g)
         {
             var brush = new SolidBrush(Color);
-            g.FillEllipse(brush, X, Y, Diam, Diam);
+            g.FillEllipse(brush, x, y, Diam, Diam);
+        }
+        private int RandomDir()
+        {
+            int a = r.Next(-5, 5);
+            while (a == 0)
+            {
+                a = r.Next(-5, 5);
+            }
+            return a;
         }
     }
 }

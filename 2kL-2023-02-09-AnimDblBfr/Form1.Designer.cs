@@ -28,45 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            mainPanel = new Panel();
+            btnStart = new Button();
+            SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainPanel.BackColor = System.Drawing.Color.White;
-            this.mainPanel.Location = new System.Drawing.Point(12, 12);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(558, 405);
-            this.mainPanel.TabIndex = 0;
-            this.mainPanel.Resize += new System.EventHandler(this.mainPanel_Resize);
+            mainPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            mainPanel.BackColor = Color.White;
+            mainPanel.Location = new Point(22, 26);
+            mainPanel.Margin = new Padding(6, 6, 6, 6);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Size = new Size(1036, 864);
+            mainPanel.TabIndex = 0;
+            mainPanel.Resize += mainPanel_Resize;
             // 
             // btnStart
             // 
-            this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnStart.Location = new System.Drawing.Point(254, 430);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 1;
-            this.btnStart.Text = "Старт";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            btnStart.Anchor = AnchorStyles.Bottom;
+            btnStart.Location = new Point(472, 917);
+            btnStart.Margin = new Padding(6, 6, 6, 6);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(139, 49);
+            btnStart.TabIndex = 1;
+            btnStart.Text = "Старт";
+            btnStart.UseVisualStyleBackColor = true;
+            btnStart.Click += btnStart_Click;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 465);
-            this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.mainPanel);
-            this.MinimumSize = new System.Drawing.Size(400, 350);
-            this.Name = "Form1";
-            this.Text = "Анимация";
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1081, 992);
+            Controls.Add(btnStart);
+            Controls.Add(mainPanel);
+            Margin = new Padding(6, 6, 6, 6);
+            MinimumSize = new Size(721, 666);
+            Name = "Form1";
+            Text = "Анимация";
+            ResumeLayout(false);
         }
 
         #endregion

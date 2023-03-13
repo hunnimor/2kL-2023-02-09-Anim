@@ -63,7 +63,7 @@
                 {
                     while (isAlive)
                     {
-                        animators.RemoveAll(it => !it.IsAlive);
+                        //animators.RemoveAll(it => !it.IsAlive);
                         lock (locker)
                         {
                             if (PaintOnBuffer())
@@ -73,7 +73,7 @@
                         }
                         if (isAlive) Thread.Sleep(30);
                     }
-                } catch (ArgumentException e){}
+                } catch (ArgumentException){}
             });
             t.IsBackground = true;
             t.Start();
